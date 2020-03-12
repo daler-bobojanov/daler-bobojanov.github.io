@@ -5,11 +5,31 @@
 }
 
 body{
-    padding: 1%;
-    background-image: url(../assets/landingPage.png);
+    padding: 0.4%;
+    background: url(../assets/landingPage.png) fixed no-repeat;
     background-size: cover;
    
 }
 
+.gameBoard{
+    width: 650px;
+    height: 350px;
+    
+}
 
+.landingModal{
+    z-index: 1;
+    position: absolute;
+    background-image: url(../assets/landingModal.png);
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin-left: 28%;
+    box-shadow: 8px 8px 5px black;
+    border: 1px black solid;
+    width: 600px;
+    height: 455px;
+    
+
+    
+}
 
