@@ -21,33 +21,7 @@
 *   Game ends once a player with an advantage tool catches the player with disadvantage tool;
 *   Players given a choice to end the game (will take to landing page) or reset and continue playing;
 
-### Wireframes:
-
-![Page-1of3 Wireframe](https://github.com/daler-bobojanov/RPG-RPS-Proposal/blob/master/assets/Page_1.png)
-![Page-2of3 Wireframe](https://github.com/daler-bobojanov/RPG-RPS-Proposal/blob/master/assets/Page_2.png)
-![Page-2of3 Wireframe](https://github.com/daler-bobojanov/RPG-RPS-Proposal/blob/master/assets/Page_3.png)
-
-### Package/Libraries (if I have used any):
+### Packages/Libraries/Other Resources (if I have used any):
 
 *   
-
-### Timeline:
-
-* Wednesday:
-    - finish the game wireframing and proposal list. 
-    - begin to pseudocode.
-
-* Thursday: 
-    - begin to gather all the game required assets and work on JS script;
-
-* Friday:
-    - continue to work on the logic and JS script;
-
-* Saturday:
-    - CSS: begin to style the game;
-
-* Sunday: 
-    - 
-* Monday: 
-    - 
 
