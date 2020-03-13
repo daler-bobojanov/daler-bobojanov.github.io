@@ -8,8 +8,33 @@
     <script defer src="./js/script.js"></script>
 </head>
 <body>
-    <div class="flex-container">
-        <div class="landingModal"></div>        
+    <!--Main Game Board-->
+    <div class="gameBoard">
+
+        <!--Landing Page Modal-->
+        <div class="flex-container">
+            <div class="landingModal"></div>        
+        </div>
+
+        <!--Players-->
+        <div class="playerOne singleGrid"></div>   
+        <div class="playerTwo singleGrid"></div>
+
+        <!--Tools-->
+        <div class="rock singleGrid"></div>
+        <div class="paper singleGrid"></div>
+        <div class="scissors singleGrid"></div>
+
+        <!--Obstacles-->
+        <div class="obstacles singleGrid" id="obstacleOne"></div>
+        <div class="obstacles singleGrid" id="obstacleTwo"></div>
+
+        <!--Winner's Screen-->
+        <div class="winnerScreen">
+            <div class="winner">Player X wins!</div>
+            <button type="button" id="resetPlay">Play Again</button>
+        </div>
+
     </div>
 </body>
 </html>
