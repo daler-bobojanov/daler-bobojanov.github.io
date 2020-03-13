@@ -10,7 +10,7 @@ body{
     background-size: cover;
 }
 
-.flex-container{    
+/* .flex-container{    
     display: flex;
     justify-content: center;
     max-width: 960px;
@@ -36,5 +36,51 @@ body{
 @keyframes landing-modal{
     0%   {top: -500px}
     100% {top: 25px}
-}
+} */
 
+/* .winnerScreen{
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute; 
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 10px;
+    background-color: black;
+    color: white;
+} */
+
+/* .winner{
+    font-size: 50px;
+    text-align: center;
+    height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'New Rocker', cursive;
+} */
+
+/* #resetPlay{
+    font-family: 'New Rocker', cursive;
+    background-color: black;
+    color: white;
+    border: 1px white solid;
+    padding: 15px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 25px;
+} */
+
+.gameBoard{
+    width: 650px;
+    height: 350px;
+    background-image: url(../assets/gameBoardImage.png);
+    background-size: 650px 350px;
+    margin: 0 auto;
+    position: relative;
+    border: 1px black solid;
+    box-shadow: 9px 10px 6px black;
+}
