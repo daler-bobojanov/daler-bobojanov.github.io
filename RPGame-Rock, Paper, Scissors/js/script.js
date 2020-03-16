@@ -24,7 +24,7 @@ const playerOne = {
     y: 3
 };
 
-const playerTWo = {
+const playerTwo = {
     x: 12,
     y: 3
 };
@@ -101,6 +101,7 @@ const doesPlayerTwoHaveWeapon = () => {
 
 // conditions for when characters reaching for a weapon/tool.
 const playerOneWeapon = (x, y) => {
+    // if Player One doesn't have a weapon do the following..
     if (!doesPlayerOneHaveWeapon()) {
         if (rock.x === x && rock.y === y) {
             $playerOne.classList.add('playerOneWithRock');
@@ -120,9 +121,12 @@ const playerOneWeapon = (x, y) => {
             scissors.x = -6;
             scissors.y = -5;
         }
-    } else if (doesPlayerOneHaveWeapon()) {
-        // WEAPON SWAP METHOD!
-            // swaps scissors with rock, only if player has scissors.
+        // Otherwise, Player One does have a weapon.
+        } else if (doesPlayerOneHaveWeapon()) {
+
+        /* <---- WEAPON SWAP METHOD! ----> */
+            /* <--- For Player One ---> */
+                // swaps scissors with rock, only if player has scissors.
         if (rock.x === x && rock.y === y) {
             if (playerOneClassList[2] === 'playerOneWithScissors') {
                 $playerOne.classList.remove('playerOneWithScissors');
@@ -134,61 +138,172 @@ const playerOneWeapon = (x, y) => {
                 rock.y = -1;
                 scissors.x = 6;
                 scissors.y = 5;
+                // swaps paper with rock, only if player has paper.
+            } else if (playerOneClassList[2] === 'playerOneWithPaper') {
+                $playerOne.classList.remove('playerOneWithPaper');
+                $playerOne.classList.add('playerOneWithRock');
+                $rock.remove();
+                $gameBoard.appendChild($paper);
+                playerOne.weapon = 'Rock';
+                rock.x = -6;
+                rock.y = -1;
+                paper.x = 6;
+                paper.y = 3;
             }
-            // swaps paper with rock, only if player has paper.
-        } else if (playerOneClassList[2] === 'playerOneWithPaper') {
-            $playerOne.classList.remove('playerOneWithPaper');
-            $playerOne.classList.add('playerOneWithRock');
+                // swaps scissors with paper, only when player has scissors.
+        } else if (paper.x === x && paper.y === y) {
+            if (playerOneClassList[2] === 'playerOneWithScissors') {
+                $playerOne.classList.remove('playerOneWithScissors');
+                $playerOne.classList.add('playerOneWithPaper');
+                $paper.remove();
+                $gameBoard.appendChild($scissors);
+                playerOne.weapon = 'Paper';
+                paper.x = -6;
+                paper.y = -3;
+                scissors.x = 6;
+                scissors.y = 5;
+                // swaps rock with paper, only when player has rock.
+            } else if (playerOneClassList[2] === 'playerWithRock') {
+                $playerOne.classList.remove('playerOneWithRock');
+                $playerOne.classList.add('playerOneWithPaper');
+                $paper.remove();
+                $gameBoard.appendChild($rock);
+                playerOne.weapon = 'Paper';
+                rock.x = 6;
+                rock.y = 1;
+                paper.x = -6;
+                paper.y = -3;
+            }
+                // swaps rock with scissors, only when player has rock.
+        } else if (scissors.x === x && scissors.y === y) {
+            if (playerOneClassList[2] === 'playerWithRock') {
+                $playerOne.classList.remove('playerWithRock');
+                $playerOne.classList.add('playerOneWithScissors');
+                $scissors.remove();
+                $gameBoard.appendChild($rock);
+                playerOne.weapon = 'Scissors';
+                rock.x = 6;
+                rock.y = 1;
+                scissors.x = -6;
+                scissors.y = -5;
+                // swaps paper with scissors, only when player has paper.
+            } else if (playerOneClassList[2] === 'playerOneWithPaper') {
+                $playerOne.classList.remove('playerOneWithPaper');
+                $playerOne.classList.add('playerOneWithScissors');
+                $scissors.remove();
+                $gameBoard.appendChild($paper);
+                playerOne.weapon = 'Scissors';
+                scissors.x = -6;
+                scissors.y = -5;
+                paper.x = 6;
+                paper.y = 3;
+            }
+        }
+    }
+}
+
+// If player Two doesn't have a weapon, player will pick up according to grid.
+const playerTwoWeapon = (x, y) => {
+    // if Player Two doesn't have a weapon do the following..
+    if (!doesPlayerTwoHaveWeapon()) {
+        if (rock.x === x && rock.y === y) {
+            $playerTwo.classList.add('playerTwoWithRock');
             $rock.remove();
-            $gameBoard.appendChild($paper);
-            playerOne.weapon = 'Rock';
+            playerTwo.weapon = 'Rock';
             rock.x = -6;
             rock.y = -1;
-            paper.x = 6;
-            paper.y = 3;
-        }
-            // swaps scissors with paper, only when player has scissors.
-    } else if (paper.x === x && paper.y === y) {
-        if (playerOneClassList[2] === 'playerOneWithScissors') {
-            $playerOne.classList.remove('playerOneWithScissors');
-            $playerOne.classList.add('playerOneWithPaper');
+        } else if (paper.x === x && paper.y === y) {
+            $playerTwo.classList.add('playerTwoWithPaper');
             $paper.remove();
-            $gameBoard.appendChild($scissors);
-            playerOne.weapon = 'Paper';
+            playerTwo.weapon = 'Paper';
             paper.x = -6;
             paper.y = -3;
-            scissors.x = 6;
-            scissors.y = 5;
-            // swaps rock with paper, only when player has rock.
-        } else if (playerOneClassList[2] === 'playerWithRock') {
-            $playerOne.classList.remove('playerOneWithRock');
-            $playerOne.classList.add('playerOneWithPaper');
-            $paper.remove();
-            $gameBoard.appendChild($rock);
-            playerOne.weapon = 'Paper';
-            rock.x = 6;
-            rock.y = 1;
-            paper.x = -6;
-            paper.y = -3;
-        }
-            // swaps rock with scissors, only when player has rock.
-    } else if (scissors.x === x && scissors.y === y) {
-        if (playerOneClassList[2] === 'playerWithRock') {
-            $playerOne.classList.remove('playerWithRock');
-            $playerOne.classList.add('playerOneWithScissors');
+        } else if (scissors.x = x && scissors.y === y) {
+            $playerTwo.classList.add('playerTwoWithScissors');
             $scissors.remove();
-            $gameBoard.appendChild($rock);
-            playerOne.weapon = 'Scissors';
-            rock.x = 6;
-            rock.y = 1;
+            playerTwo.weapon = 'Scissors';
             scissors.x = -6;
             scissors.y = -5;
         }
+        // Otherwise, Player Two does have a weapon.
+    } else if (doesPlayerTwoHaveWeapon()) {
+            /* <---- WEAPON SWAP METHOD! ----> */
+                /* <--- For Player Two ---> */
+                // swaps scissors with rock, only if player has scissors.
+        if (rock.x === x && rock.y === y) {
+            if (playerTwoClassList[2] === 'playerTwoWithScissors') {
+                $playerTwo.classList.remove('playerTwoWithScissors');
+                $playerTwo.classList.add('playerTwoWithRock');
+                $rock.remove();
+                $gameBoard.appendChild($scissors);
+                playerTwo.weapon = 'Rock';
+                rock.x = -6;
+                rock.y = -1;
+                scissors.x = 6;
+                scissors.y = 5;
+                // swaps paper with rock, only if player has rock.
+            } else if (playerTwoClassList[2] === 'playerTwoWithPaper') {
+                $playerTwo.classList.remove('playerTwoWithPaper');
+                $playerTwo.classList.add('playerTwoWithRock');
+                $rock.remove();
+                $gameBoard.appendChild($paper);
+                playerTwo.weapon = 'Rock';
+                rock.x = -6;
+                rock.y = -1;
+                paper.x = 6;
+                paper.y = 3;
+            }
+                // swaps scissors with paper, only if player has scissors.
+        } else if (paper.x === x && paper.y === y) {
+            if (playerTwoClassList[2] === 'playerTwoWithScissors') {
+                $playerTwo.classList.remove('playerTwoWithScissors');
+                $playerTwo.classList.add('playerTwoWithPaper');
+                $paper.remove();
+                $gameBoard.appendChild($scissors);
+                $playerTwo.weapon = 'Paper';
+                paper.x = -6;
+                paper.y = -3;
+                scissors.x = 6;
+                scissors.y = 5;
+                // swaps rock with paper, only if player has rock.
+            } else if (playerTwoClassList[2] === 'playerTwoWithRock') {
+                $playerTwo.classList.remove('playerTwoWithRock');
+                $playerTwo.classList.add('playerTwoWithPaper');
+                $paper.remove();
+                $gameBoard.appendChild($rock);
+                playerTwo.weapon = 'Paper';
+                rock.x = 6;
+                rock.y = 1;
+                paper.x = -6;
+                paper.x = -3;
+            }
+                // swaps rock with scissors, only if player has rock.
+        } else if (scissors.x === x && scissors.y === y) {
+            if (playerTwoClassList[2] === 'playerTwoWithRock') {
+                $playerTwo.classList.remove('playerTwoWithRock');
+                $playerTwo.classList.add('playerTwoWithScissors');
+                $scissors.remove();
+                $gameBoard.appendChild($rock);
+                playerTwo.weapon = 'Scissors';
+                rock.x = 6;
+                rock.y = 1;
+                scissors.x = -6;
+                scissors.y = -5;
+                // swaps paper with scissors, only if player has paper.
+            } else if (playerTwoClassList[2] === 'playerTwoWithPaper') {
+                $playerTwo.classList.remove('playerTwoWithPaper');
+                $playerTwo.classList.add('playerTwoWithScissors');
+                $scissors.remove();
+                $gameBoard.appendChild($paper);
+                playerTwo.weapon = 'Scissors';
+                paper.x = 6;
+                paper.y = 3;
+                scissors.x = -6;
+                scissors.y = -5;
+            }
+        }
     }
-
 }
-
-
 
 
 
