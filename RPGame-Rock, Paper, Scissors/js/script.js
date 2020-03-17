@@ -227,6 +227,7 @@ const playerTwoWeapon = (x, y) => {
         }
         // Otherwise, Player Two does have a weapon.
     } else if (doesPlayerTwoHaveWeapon()) {
+
             /* <---- WEAPON SWAP METHOD! ----> */
                 /* <--- For Player Two ---> */
                 // swaps scissors with rock, only if player has scissors.
@@ -305,7 +306,43 @@ const playerTwoWeapon = (x, y) => {
     }
 }
 
-
+// the WIN condition on the rock-paper-scissors logic
+const checkWin = () => {
+    if ($playerOne.style.left === $playerTwo.style.left && $playerOne.style.top === $playerTwo.style.top) {
+        gameOver = true;
+        const $winner = document.querySelector('.winner');
+        if (playerOne.weapon === 'Rock' && playerTwo.weapon === 'Scissors') {
+            $playerTwo.remove();
+            $winner.innerHTML = 'Mario Wins!'; /* Player 1 Wins! */
+        } else if (playerOne.weapon === 'Rock' && playerTwo.weapon === 'Paper') {
+            $playerOne.remove();
+            $winner.innerHTML = 'Spiny Wins!'; /* Player 2 Wins! */
+        } else if (playerOne.weapon === 'Scissors' && playerTwo.weapon === 'Paper') {
+            $playerTwo.remove();
+            $winner.innerHTML = 'Mario Wins!';
+        } else if (playerOne.weapon === 'Scissors' && playerTwo.weapon === 'Rock') {
+            $playerOne.remove();
+            $winner.innerHTML = 'Spiny Wins!';
+        } else if (playerOne.weapon === 'Paper' && playerTwo.weapon === 'Rock') {
+            $playerTwo.remove();
+            $winner.innerHTML = 'Mario Wins!';
+        } else if (playerOne.weapon === 'Paper' && $playerTwo.weapon === 'Scissors') {
+            $playerOne.remove();
+            $winner.innerHTML = 'Spiny Wins!';
+        } else if (typeof(playerOne.weapon) == 'string' && typeof(playerTwo.weapon) == 'undefined') {
+            $playerTwo.remove();
+            $winner.innerHTML = 'Mario Wins!';
+        } else if (typeof($playerOne.weapon) == 'undefined' && typeof(playerTwo.weapon) == 'string') {
+            $playerOne.remove();
+            $winner.innerHTML = 'Spiny Wins!';
+        } else {
+            $playerOne.remove();
+            $playerTwo.remove();
+            $winner.innerHTML = 'Both Lose!'
+        }
+        document.querySelector('.winnerScreen').style.zIndex = '1';
+    }
+}
 
 
 
