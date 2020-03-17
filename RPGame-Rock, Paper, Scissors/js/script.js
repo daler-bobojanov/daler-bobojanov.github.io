@@ -1,5 +1,19 @@
 // Game Pseudocode
 
+// <------ Implement "swap" method for characters to be able to switch 'weapons ------> - DONE!
+// <------ Implement "collision detection" method for Win/Lose state -----> - DONE!
+// <------ Another Modal to announce which Player won. And "Play again" button -----> - DONE!
+// <------ Creat eventListeners for key controls/press for both characters ------> - DONE!
+// <----- Implement a function for character movements within the game grid -----> - DONE!
+
+// ***** Future enhancements ****
+// <----- Bonus:: add sound audio for certain movements and actions -----> - DONE!
+// <----- Implement "Players Score board" ----->
+// <----- Implement "Players remaining Health left Bar" ----->
+// <----- Implement "GO to home page" button and function ---->
+
+    // <<<<<< SCRIPT >>>>>
+
 // <------ On landing page, Modal with "Instructions" and "Start" button ------>
 const $gameBoard = document.body.querySelector('.gameBoard');
 
@@ -16,6 +30,12 @@ const $gameBoardHeight = $gameBoard.offsetHeight;
 // The Element.classList is a read-only property that returns a live DOMTokenList collection of the class attributes of the element. This can then be used to manipulate the class list. Using classList is a convenient alternative to accessing an element's list of classes as a space-delimited string via element.className.
 const playerOneClassList = $playerOne.classList;
 const playerTwoClassList = $playerTwo.classList;
+
+const landingAudio = new Audio();
+const marioKilled = new Audio();
+
+landingAudio.src = "assets/audio/mario_bros_game.mp3";
+marioKilled.src = "assets/audio/mario_killed.mp3";
 
 let gameOver = true;
 
@@ -106,7 +126,7 @@ const playerOneWeapon = (x, y) => {
         if (rock.x === x && rock.y === y) {
             $playerOne.classList.add('playerOneWithRock');
             $rock.remove();
-            $playerOne.weapon = 'Rock';
+            playerOne.weapon = 'Rock';
             rock.x = -6;
             rock.y = -1;
         } else if (paper.x === x && paper.y === y) {
@@ -118,6 +138,7 @@ const playerOneWeapon = (x, y) => {
         } else if (scissors.x === x && scissors.y === y) {
             $playerOne.classList.add('playerOneWithScissors');
             $scissors.remove();
+            playerOne.weapon = 'Scissors';
             scissors.x = -6;
             scissors.y = -5;
         }
@@ -218,7 +239,7 @@ const playerTwoWeapon = (x, y) => {
             playerTwo.weapon = 'Paper';
             paper.x = -6;
             paper.y = -3;
-        } else if (scissors.x = x && scissors.y === y) {
+        } else if (scissors.x === x && scissors.y === y) {
             $playerTwo.classList.add('playerTwoWithScissors');
             $scissors.remove();
             playerTwo.weapon = 'Scissors';
@@ -261,7 +282,7 @@ const playerTwoWeapon = (x, y) => {
                 $playerTwo.classList.add('playerTwoWithPaper');
                 $paper.remove();
                 $gameBoard.appendChild($scissors);
-                $playerTwo.weapon = 'Paper';
+                playerTwo.weapon = 'Paper';
                 paper.x = -6;
                 paper.y = -3;
                 scissors.x = 6;
@@ -297,10 +318,10 @@ const playerTwoWeapon = (x, y) => {
                 $scissors.remove();
                 $gameBoard.appendChild($paper);
                 playerTwo.weapon = 'Scissors';
-                paper.x = 6;
-                paper.y = 3;
                 scissors.x = -6;
                 scissors.y = -5;
+                paper.x = 6;
+                paper.y = 3;
             }
         }
     }
@@ -316,7 +337,7 @@ function checkWin() {
             $winner.innerHTML = 'Mario Wins!'; 
         } else if (playerOne.weapon === 'Rock' && playerTwo.weapon === 'Paper') {
             $playerOne.remove();
-            $winner.innerHTML = 'Spiny Wins!'; 
+            $winner.innerHTML = 'Spiny Wins!';
         } else if (playerOne.weapon === 'Scissors' && playerTwo.weapon === 'Paper') {
             $playerTwo.remove();
             $winner.innerHTML = 'Mario Wins!';
@@ -326,13 +347,13 @@ function checkWin() {
         } else if (playerOne.weapon === 'Paper' && playerTwo.weapon === 'Rock') {
             $playerTwo.remove();
             $winner.innerHTML = 'Mario Wins!';
-        } else if (playerOne.weapon === 'Paper' && $playerTwo.weapon === 'Scissors') {
+        } else if (playerOne.weapon === 'Paper' && playerTwo.weapon === 'Scissors') {
             $playerOne.remove();
             $winner.innerHTML = 'Spiny Wins!';
         } else if (typeof(playerOne.weapon) == 'string' && typeof(playerTwo.weapon) == 'undefined') {
             $playerTwo.remove();
             $winner.innerHTML = 'Mario Wins!';
-        } else if (typeof($playerOne.weapon) == 'undefined' && typeof(playerTwo.weapon) == 'string') {
+        } else if (typeof(playerOne.weapon) == 'undefined' && typeof(playerTwo.weapon) == 'string') {
             $playerOne.remove();
             $winner.innerHTML = 'Spiny Wins!';
         } else {
@@ -475,12 +496,18 @@ document.body.addEventListener('keydown', action => {
     }
 });
 
-// landign modal load function 
+// landing modal load function 
 const landingModal = document.body.querySelector('.landingModal');
 landingModal.onclick = function() {
 landingModal.style.display = 'none';
+landingAudio.play();
 gameOver = false;
 };
+
+// document.body.querySelector('.gameBoard').addEventListener('load', landingAudio);
+// function landingAudio() {
+//     landingAudio.play();
+// }
 
 // Play again function
 const resetPlay = document.querySelector('#resetPlay');
@@ -492,28 +519,11 @@ resetPlay.onclick = function() {
 // Recources - W3 School; MDN; YouTube; Blerf game scenario
 
 /* Bugs to work on:
-1) Spiny grabs scissors before getting close to the object;
-2) win states not always accurate;
-3) swap method isn't working for Spiny between Paper and Scissors and Rock and Scissors;
-4) none of swap methods work for Mario;
+1) Spiny grabs scissors before getting close to the object; - FIXED!
+2) win states not always accurate; - FIXED!
+3) swap method isn't working for Spiny between Paper and Scissors and Rock and Scissors; - FIXED!
+4) none of swap methods work for Mario; - FIXED!
+5) when Spiny has scissors and mario has rock and when try to switch mario's rock to paper, rock doesn't reapear on the gameBoard; - FIXED!
+6) WIN state for spiny = scissors and mario = paper is NOT correct; - FIXED!
 */ 
 
-// <------ Implement "swap" method for characters to be able to switch 'weapons ------>
-
-
-// <------ Implement "collision detection" method for Win/Lose state ----->
-
-
-// <------ Another Modal to announce which Player won. And "Play again" button ----->
-
-
-// <------ Creat eventListeners for key controls/press for both characters ------>
-
-
-// <----- Implement a function for character movements within the game grid ----->
-
-
-// <----- Implement "Players Score board" ----->
-// <----- Implement "Players remaining Health left Bar" ----->
-// <----- Implement "GO to home page" button and function ---->
-// <----- Bonus:: add sound audio for certain movements and actions ----->
