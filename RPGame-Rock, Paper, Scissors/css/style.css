@@ -27,15 +27,7 @@ body{
     width: 650px;
     height: 350px;
     margin: auto;
-    animation: landing-modal;
-    animation-duration: 4s;
-    animation-timing-function: ease-out;
 } 
-
-/* @keyframes landing-modal{
-    0%   {top: -500px}
-    100% {top: 25px}
-} */
 
 .winnerScreen{
     z-index: -1;
@@ -84,7 +76,7 @@ body{
     box-shadow: 9px 10px 6px black;
     animation: game-board;
     animation-duration: 4s;
-    animation-timing-function: ease-out;
+    animation-timing-function: ease-in-out;
 }
 
 @keyframes game-board{
@@ -182,6 +174,19 @@ body{
     left: 300px;
     background: url(..//assets/scissors.png) no-repeat center 55%;
     background-size: 50px 50px;
+}
+
+#main-footer{
+    display: flex;
+    justify-content: center;
+    margin-top: 354px;
+}
+
+#main-footer p{
+    font-size: 1.5em;
+    text-align: center;
+    font-style: italic;
+    color: whitesmoke;
 }
 
 @media only screen and (min-width: 975px){
