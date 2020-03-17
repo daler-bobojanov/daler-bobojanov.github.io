@@ -4,7 +4,7 @@
 const $gameBoard = document.body.querySelector('.gameBoard');
 
 const $playerOne = document.body.querySelector('.playerOne');
-const $playerTwo = document.body.querySelector('playerTwo');
+const $playerTwo = document.body.querySelector('.playerTwo');
 
 const $rock = document.body.querySelector('.rock');
 const $paper = document.body.querySelector('.paper');
@@ -57,7 +57,7 @@ const isCoordinateInGrid = (x, y) => {
         return false;
     }
         return true;
-} 
+}; 
 
 // checks whether there's an obstacle at a coordinate.
 const isThereAnObstacleAt = (x, y) => {
@@ -163,7 +163,7 @@ const playerOneWeapon = (x, y) => {
                 scissors.x = 6;
                 scissors.y = 5;
                 // swaps rock with paper, only when player has rock.
-            } else if (playerOneClassList[2] === 'playerWithRock') {
+            } else if (playerOneClassList[2] === 'playerOneWithRock') {
                 $playerOne.classList.remove('playerOneWithRock');
                 $playerOne.classList.add('playerOneWithPaper');
                 $paper.remove();
@@ -176,8 +176,8 @@ const playerOneWeapon = (x, y) => {
             }
                 // swaps rock with scissors, only when player has rock.
         } else if (scissors.x === x && scissors.y === y) {
-            if (playerOneClassList[2] === 'playerWithRock') {
-                $playerOne.classList.remove('playerWithRock');
+            if (playerOneClassList[2] === 'playerOneWithRock') {
+                $playerOne.classList.remove('playerOneWithRock');
                 $playerOne.classList.add('playerOneWithScissors');
                 $scissors.remove();
                 $gameBoard.appendChild($rock);
@@ -200,7 +200,7 @@ const playerOneWeapon = (x, y) => {
             }
         }
     }
-}
+};
 
 // If player Two doesn't have a weapon, player will pick up according to grid.
 const playerTwoWeapon = (x, y) => {
@@ -304,19 +304,19 @@ const playerTwoWeapon = (x, y) => {
             }
         }
     }
-}
+};
 
 // the WIN condition on the rock-paper-scissors logic
-const checkWin = () => {
+function checkWin() {
     if ($playerOne.style.left === $playerTwo.style.left && $playerOne.style.top === $playerTwo.style.top) {
         gameOver = true;
         const $winner = document.querySelector('.winner');
         if (playerOne.weapon === 'Rock' && playerTwo.weapon === 'Scissors') {
             $playerTwo.remove();
-            $winner.innerHTML = 'Mario Wins!'; /* Player 1 Wins! */
+            $winner.innerHTML = 'Mario Wins!'; 
         } else if (playerOne.weapon === 'Rock' && playerTwo.weapon === 'Paper') {
             $playerOne.remove();
-            $winner.innerHTML = 'Spiny Wins!'; /* Player 2 Wins! */
+            $winner.innerHTML = 'Spiny Wins!'; 
         } else if (playerOne.weapon === 'Scissors' && playerTwo.weapon === 'Paper') {
             $playerTwo.remove();
             $winner.innerHTML = 'Mario Wins!';
@@ -344,7 +344,159 @@ const checkWin = () => {
     }
 }
 
+// utilizing (x, y) coordinates from the player object, moves them accordingly in CSS with responsive styling.
+const movePlayerOneTo = (x, y) => {
+    if ($gameBoardWidth === 975) {
+        $playerOne.style.left = (playerOne.x * 75).toString() + 'px';
+        $playerOne.style.top = (playerOne.y * 75).toString() + 'px';
+        playerOneWeapon(x, y);
+        checkWin();
+    } else {
+        $playerOne.style.left = (playerOne.x * 50).toString() + 'px';
+        $playerOne.style.top = (playerOne.y * 50).toString() + 'px';
+        playerOneWeapon(x, y);
+        checkWin();
+    }
+};
 
+const movePlayerTwoTo = (x, y) => {
+    if ($gameBoardWidth === 975) {
+        $playerTwo.style.left = (playerTwo.x * 75).toString() + 'px';
+        $playerTwo.style.top = (playerTwo.y * 75).toString() + 'px';
+        playerTwoWeapon(x, y);
+        checkWin();
+    } else {
+        $playerTwo.style.left = (playerTwo.x * 50).toString() + 'px';
+        $playerTwo.style.top = (playerTwo.y * 50).toString() + 'px';
+        playerTwoWeapon(x, y);
+        checkWin();
+    }
+};
+
+// characters movement on the grid depending on the keyCode.
+// FOR PLAYER 1 'MARIO'.
+movePlayerOneUp = () => {
+    if (canMoveTo(playerOne.x, playerOne.y - 1)) {
+        playerOne.y -= 1;
+        movePlayerOneTo(playerOne.x, playerOne.y);
+    }
+};
+
+movePlayerOneDown = () => {
+    if (canMoveTo(playerOne.x, playerOne.y + 1)) {
+        playerOne.y += 1;
+        movePlayerOneTo(playerOne.x, playerOne.y);
+    }
+};
+
+movePlayerOneLeft = () => {
+    if (canMoveTo(playerOne.x -1, playerOne.y)) {
+        playerOne.x -= 1;
+        movePlayerOneTo(playerOne.x, playerOne.y);
+    }
+};
+
+movePlayerOneRight = () => {
+    if (canMoveTo(playerOne.x + 1, playerOne.y)) {
+        playerOne.x += 1;
+        movePlayerOneTo(playerOne.x, playerOne.y);
+    }
+};
+
+// FOR PLAYER 2 'SPINY'.
+movePlayerTwoUp = () => {
+    if (canMoveTo(playerTwo.x, playerTwo.y - 1)) {
+        playerTwo.y -= 1;
+        movePlayerTwoTo(playerTwo.x, playerTwo.y);
+    }
+};
+
+movePlayerTwoDown = () => {
+    if (canMoveTo(playerTwo.x, playerTwo.y + 1)) {
+        playerTwo.y += 1;
+        movePlayerTwoTo(playerTwo.x, playerTwo.y);
+    }
+};
+
+movePlayerTwoLeft = () => {
+    if (canMoveTo(playerTwo.x - 1, playerTwo.y)) {
+        playerTwo.x -= 1;
+        movePlayerTwoTo(playerTwo.x, playerTwo.y);
+    }
+};
+
+movePlayerTwoRight = () => {
+    if (canMoveTo(playerTwo.x + 1, playerTwo.y)) {
+        playerTwo.x += 1;
+        movePlayerTwoTo(playerTwo.x, playerTwo.y);
+    }
+};
+
+// KeyboardEvent keyCode Property
+document.body.addEventListener('keydown', action => {
+    const keyCode = action.keyCode;
+    if ([37, 38, 39, 40, 65, 68, 83, 87].includes(keyCode)) {
+        action.preventDefault();
+    }
+    if (gameOver) return;
+
+    switch (keyCode) {
+        case 37:
+            movePlayerTwoLeft();
+            break;
+
+        case 38:
+            movePlayerTwoUp();
+            break;
+
+        case 39:
+            movePlayerTwoRight();
+            break;
+
+        case 40:
+            movePlayerTwoDown();
+            break;
+
+        case 65:
+            movePlayerOneLeft();
+            break;
+
+        case 68:
+            movePlayerOneRight();
+            break;
+
+        case 83:
+            movePlayerOneDown();
+            break;
+
+        case 87:
+            movePlayerOneUp();
+            break;
+    }
+});
+
+// landign modal load function 
+const landingModal = document.body.querySelector('.landingModal');
+landingModal.onclick = function() {
+landingModal.style.display = 'none';
+gameOver = false;
+};
+
+// Play again function
+const resetPlay = document.querySelector('#resetPlay');
+resetPlay.onclick = function() {
+    location.reload();
+};
+
+
+// Recources - W3 School; MDN; YouTube; Blerf game scenario
+
+/* Bugs to work on:
+1) Spiny grabs scissors before getting close to the object;
+2) win states not always accurate;
+3) swap method isn't working for Spiny between Paper and Scissors and Rock and Scissors;
+4) none of swap methods work for Mario;
+*/ 
 
 // <------ Implement "swap" method for characters to be able to switch 'weapons ------>
 
