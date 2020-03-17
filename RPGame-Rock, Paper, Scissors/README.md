@@ -23,5 +23,8 @@
 
 ### Packages/Libraries/Other Resources (if I have used any):
 
-*   
+*   w3schools;
+*   YouTube;
+*   Mozilla MDN;
+*   Let's build basic collision detection in JavaScript! By Eric Lewis;
 
