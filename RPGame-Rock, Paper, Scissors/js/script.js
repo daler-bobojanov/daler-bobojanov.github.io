@@ -1,18 +1,21 @@
-// Game Pseudocode
+//      ==== Game Pseudocode ====
 
 // <------ Implement "swap" method for characters to be able to switch 'weapons ------> - DONE!
 // <------ Implement "collision detection" method for Win/Lose state -----> - DONE!
 // <------ Another Modal to announce which Player won. And "Play again" button -----> - DONE!
 // <------ Creat eventListeners for key controls/press for both characters ------> - DONE!
-// <----- Implement a function for character movements within the game grid -----> - DONE!
+// <-----  Implement a function for character movements within the game grid -----> - DONE!
 
-// ***** Future enhancements ****
+// ***** FUTURE ENHANCEMENTS ****
 // <----- Bonus:: add sound audio for certain movements and actions -----> - DONE!
+// <----- Implement "Player vs Computer" mode ---->
 // <----- Implement "Players Score board" ----->
 // <----- Implement "Players remaining Health left Bar" ----->
 // <----- Implement "GO to home page" button and function ---->
+// <----- Implement Mobile screen controllers for mobile play ---->
+// ---------------------------------------------------------------// ----------------------------------------------------------//
 
-    // <<<<<< SCRIPT >>>>>
+                            // <<<<<< SCRIPT >>>>>
 
 // <------ On landing page, Modal with "Instructions" and "Start" button ------>
 const $gameBoard = document.body.querySelector('.gameBoard');
@@ -327,7 +330,7 @@ const playerTwoWeapon = (x, y) => {
     }
 };
 
-// the WIN condition on the rock-paper-scissors logic
+// the WIN condition on the rock-paper-scissors logic.
 function checkWin() {
     if ($playerOne.style.left === $playerTwo.style.left && $playerOne.style.top === $playerTwo.style.top) {
         gameOver = true;
@@ -504,21 +507,19 @@ landingAudio.play();
 gameOver = false;
 };
 
-// document.body.querySelector('.gameBoard').addEventListener('load', landingAudio);
-// function landingAudio() {
-//     landingAudio.play();
-// }
-
 // Play again function
 const resetPlay = document.querySelector('#resetPlay');
 resetPlay.onclick = function() {
     location.reload();
 };
 
+// document.body.querySelector('.gameBoard').addEventListener('load', landingAudio);
+// function landingAudio() {
+//     landingAudio.play();
+// }
 
-// Recources - W3 School; MDN; YouTube; Blerf game scenario
-
-/* Bugs to work on:
+/* 
+        === Bugs to work on: ===
 1) Spiny grabs scissors before getting close to the object; - FIXED!
 2) win states not always accurate; - FIXED!
 3) swap method isn't working for Spiny between Paper and Scissors and Rock and Scissors; - FIXED!
@@ -527,3 +528,4 @@ resetPlay.onclick = function() {
 6) WIN state for spiny = scissors and mario = paper is NOT correct; - FIXED!
 */ 
 
+// Recources - W3 School; MDN; YouTube; Blerf game scenario
