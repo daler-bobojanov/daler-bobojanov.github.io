@@ -10,4 +10,4 @@ Ps.
 Please, feel free to reach-out to me if you have any constructive feedback or you'd like to compliment.
 
 
-### [RPG Game - "Rock, Paper, Scissors"](https://daler-bobojanov.github.io/RPGame-Rock,%20Paper,%20Scissors/){:target="_blank"}
+### [RPG Game - "Rock, Paper, Scissors"](https://daler-bobojanov.github.io/RPGame-Rock,%20Paper,%20Scissors/)

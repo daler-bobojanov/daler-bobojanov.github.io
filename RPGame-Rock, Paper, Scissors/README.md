@@ -1,4 +1,8 @@
-# RPG- "Super Mario Rock, Paper, Scissors" -Game-Proposal.
+# RPG- "Super Mario Rock, Paper, Scissors". 
+
+## *Technologies used:*
+* I used Javascript, HTML and CSS.
+* *Disclaimer* - I do not own any of the images. 
 
 ## *Rules:*
 
@@ -6,8 +10,7 @@
 
 * 'Mario' meets 'Spiny' in 'Rock, Paper, Scissors' battle!
 
-    This is a two players game that resembles 'Super Mario', that incorporates 'Rock, Paper, Scissors' game! I used Javascript, HTML and CSS. 
-    I do not own any of the images. I hope you enjoy my game.
+    This is a two players game that resembles 'Super Mario', that also incorporates classic 'Rock, Paper, Scissors' game! I hope you enjoy my game!
 
 ### Detailed Instructions:
 
