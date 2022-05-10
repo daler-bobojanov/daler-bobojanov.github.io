@@ -11,3 +11,6 @@ Please, feel free to reach-out to me if you have any constructive feedback or yo
 
 
 * ### [RPG Game - "Rock, Paper, Scissors"](https://daler-bobojanov.github.io/RPGame-Rock,%20Paper,%20Scissors/)
+
+* ### [Wine API"](https://github.com/daler-bobojanov/Wine-API)
+
